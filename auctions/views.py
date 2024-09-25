@@ -5,21 +5,27 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django import forms
+from django.core.validators import DecimalValidator
 
 from .models import *
 
 class CreateForm(forms.Form):
-    title = forms.CharField(max_length=64, widget=forms.TextInput(attrs={'class':'form-control'}))
-    description = forms.CharField(label="Describe item here:",
-                                  widget=forms.Textarea(attrs={
+    title = forms.CharField(max_length=64, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Title'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={
                                     'class':'form-control',
-                                    'style':"width: 60%; height: 20vh; min-width: 500px;"}),                                                                                      
-                                  initial="")
+                                    'style': "width: 60%; height: 20vh; min-width: 500px;",
+                                    'placeholder': 'Enter description here'}),                                                                                      
+                                  initial="Enter desciption here")
     category = forms.ModelChoiceField(label="Choose item category:",
-                                      widget=forms.Select(attrs={'class':'form-control'}),
+                                      widget=forms.Select(attrs={'class':'form-control','style':'color: #636c72'}),
                                       queryset=Category.objects.all(),
-                                      empty_label="Select a category")
-    starting_bid = forms.FloatField(label="Enter starting bid:", widget=forms.NumberInput(attrs={'class':'form-control'}))
+                                      empty_label="Select a category",)
+    starting_bid = forms.DecimalField(validators=[DecimalValidator], decimal_places=2, widget=forms.NumberInput(attrs={
+                                    'class':'form-control',
+                                    'placeholder':'Starting bid',
+                                    'step': '1',
+                                    'min': '0'}),
+                                    initial="Enter starting bid")
 
 def index(request):
     return render(request, "auctions/index.html")
