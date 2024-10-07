@@ -23,9 +23,10 @@ class CreateForm(forms.Form):
     starting_bid = forms.DecimalField(validators=[DecimalValidator], decimal_places=2, widget=forms.NumberInput(attrs={
                                     'class':'form-control',
                                     'placeholder':'Starting bid',
-                                    'step': '1',
+                                    'step': '0.1',
                                     'min': '0'}),
                                     initial="Enter starting bid")
+    image_url = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Image url'}))
 
 def index(request):
     return render(request, "auctions/index.html")

@@ -18,23 +18,26 @@ body {
     box-shadow: 3px 3px rgba(151, 219, 235, 0.5);
 }
 
-.textarea_input {
-    width: 60%;
-    height: 20vh;
-    min-width: 500px;
-    border-radius: 3px;
-    border-width: 2px;
-    border-color: lightgrey;
-    outline-color: lightblue;
-    padding: 6px 10px;
-    box-sizing: border-box;
-}
-
 .textarea_input:focus {
     box-shadow: 3px 3px 4px  rgba(151, 219, 235, 0.5);
 }
 
 .body-body {
     margin-left: 16px;
+}
+
+.submit-button {
+    border-color: lightgrey;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.submit-button:hover {
+    background-color: antiquewhite;
+}
+
+.submit-button:focus {
+    background-color: azure;
 }
 
